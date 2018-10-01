@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Poker chart</title>
+  <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/custom.js"></script>
+
+</head>
+<body>
+
+<!--<h1>Poker Chart</h1>-->
+<div class="button-block btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-warning active" id="btn-iso">
+    <input type="radio" name="options"  autocomplete="off" checked> Iso
+  </label>
+  <label class="btn btn-primary" id="btn-rfi">
+    <input type="radio" name="options"  autocomplete="off"> RFI
+  </label>
+  <label class="btn btn-danger" id="btn-cc">
+    <input type="radio" name="options"  autocomplete="off"> CC/3bet
+  </label>
+</div>
+<div class="table-place place-iso d-none">
+  <div class="button-block btn-group btn-group-toggle" data-toggle="buttons" style="opacity: 0;">
+    <label class="btn btn-secondary active" id="1">
+      <input type="radio" name="options"  autocomplete="off" checked> EP
+    </label>
+    <label class="btn btn-secondary" id="2">
+      <input type="radio" name="options"  autocomplete="off"> MP
+    </label>
+    <label class="btn btn-secondary" id="3">
+      <input type="radio" name="options"  autocomplete="off"> HJ
+    </label>
+    <label class="btn btn-secondary" id="4">
+      <input type="radio" name="options"  autocomplete="off"> CO
+    </label>
+    <label class="btn btn-secondary" id="5">
+      <input type="radio" name="options"  autocomplete="off"> BU
+    </label>
+    <label class="btn btn-secondary" id="6">
+      <input type="radio" name="options"  autocomplete="off"> SB
+    </label>
+  </div>
+  <table id="iso" class="iso table table-bordered text-center">
+    <tr>
+      <td class="red">AA</td>
+      <td class="red">AKs</td>
+      <td class="red">AQs</td>
+      <td class="red">AJs</td>
+      <td class="red">ATs</td>
+      <td class="orange">A9s</td>
+      <td class="orange">A8s</td>
+      <td class="orange">A7s</td>
+      <td class="orange">A6s</td>
+      <td class="orange">A5s</td>
+      <td class="orange">A4s</td>
+      <td class="orange">A3s</td>
+      <td class="orange">A2s</td>
+    </tr>
+    <tr>
+      <td class="red">AKo</td>
+      <td class="red">KK</td>
+      <td class="red">KQs</td>
+      <td class="red">KJs</td>
+      <td class="orange">KTs</td>
+      <td class="orange">K9s</td>
+      <td class="orange">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="red">AQo</td>
+      <td class="red">KQo</td>
+      <td class="red">QQ</td>
+      <td class="orange">QJs</td>
+      <td class="orange">QTs</td>
+      <td class="orange">Q9s</td>
+      <td class="yellow">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="red">AJo</td>
+      <td class="orange">KJo</td>
+      <td class="orange">QJo</td>
+      <td class="red">JJ</td>
+      <td class="orange">JTs</td>
+      <td class="orange">J9s</td>
+      <td class="yellow">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="orange">ATo</td>
+      <td class="yellow">KTo</td>
+      <td class="op">QTo</td>
+      <td class="op">JTo</td>
+      <td class="red">TT</td>
+      <td class="orange">T9s</td>
+      <td class="yellow">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="orange">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="red">99</td>
+      <td class="orange">98s</td>
+      <td class="op">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="orange">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="red">88</td>
+      <td class="yellow">87s</td>
+      <td class="op">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="orange">77</td>
+      <td class="yellow">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="orange">66</td>
+      <td class="op">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="yellow">55</td>
+      <td class="op">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="op">A4o</td>
+      <td class="op">K4o</td>
+      <td class="op">Q4o</td>
+      <td class="op">J4o</td>
+      <td class="op">T4o</td>
+      <td class="op">94o</td>
+      <td class="op">84o</td>
+      <td class="op">74o</td>
+      <td class="op">64o</td>
+      <td class="op">54o</td>
+      <td class="yellow">44</td>
+      <td class="op">43s</td>
+      <td class="op">42s</td>
+    </tr>
+    <tr>
+      <td class="op">A3o</td>
+      <td class="op">K3o</td>
+      <td class="op">Q3o</td>
+      <td class="op">J3o</td>
+      <td class="op">T3o</td>
+      <td class="op">93o</td>
+      <td class="op">83o</td>
+      <td class="op">73o</td>
+      <td class="op">63o</td>
+      <td class="op">53o</td>
+      <td class="op">43o</td>
+      <td class="yellow">33</td>
+      <td class="op">32s</td>
+    </tr>
+    <tr>
+      <td class="op">A2o</td>
+      <td class="op">K2o</td>
+      <td class="op">Q2o</td>
+      <td class="op">J2o</td>
+      <td class="op">T2o</td>
+      <td class="op">92o</td>
+      <td class="op">82o</td>
+      <td class="op">72o</td>
+      <td class="op">62o</td>
+      <td class="op">52o</td>
+      <td class="op">42o</td>
+      <td class="op">32o</td>
+      <td class="yellow">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="red">2+ limpers</td>
+      <td colspan="4" class="orange">1 limper</td>
+      <td colspan="4" class="yellow"> over limp</td>
+    </tr>
+  </table>
+</div>
+<div class="table-place place-rfi d-none">
+  <div class="button-block btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active" id="ep">
+      <input type="radio" name="options"  autocomplete="off" checked> EP
+    </label>
+    <label class="btn btn-secondary" id="mp">
+      <input type="radio" name="options"  autocomplete="off"> MP
+    </label>
+    <label class="btn btn-secondary" id="hj">
+      <input type="radio" name="options"  autocomplete="off"> HJ
+    </label>
+    <label class="btn btn-secondary" id="co">
+      <input type="radio" name="options"  autocomplete="off"> CO
+    </label>
+    <label class="btn btn-secondary" id="bu">
+      <input type="radio" name="options"  autocomplete="off"> BU
+    </label>
+    <label class="btn btn-secondary" id="sb">
+      <input type="radio" name="options"  autocomplete="off"> SB
+    </label>
+  </div>
+  <table id="rfiEp" class="rfi table table-bordered text-center ">
+    <tr>
+      <td class="red">AA</td>
+      <td class="deeppink">AKs</td>
+      <td class="darkpuple">AQs</td>
+      <td class="blue">AJs</td>
+      <td class="skyblue">ATs</td>
+      <td class="skyblue">A9s</td>
+      <td class="skyblue">A8s</td>
+      <td class="op">A7s</td>
+      <td class="op">A6s</td>
+      <td class="op">A5s</td>
+      <td class="op">A4s</td>
+      <td class="op">A3s</td>
+      <td class="op">A2s</td>
+    </tr>
+    <tr>
+      <td class="deeppink">AKo</td>
+      <td class="red">KK</td>
+      <td class="blue">KQs</td>
+      <td class="skyblue">KJs</td>
+      <td class="skyblue">KTs</td>
+      <td class="op">K9s</td>
+      <td class="op">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="darkpuple">AQo</td>
+      <td class="op">KQo</td>
+      <td class="deeppink">QQ</td>
+      <td class="skyblue">QJs</td>
+      <td class="skyblue">QTs</td>
+      <td class="op">Q9s</td>
+      <td class="op">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">AJo</td>
+      <td class="op">KJo</td>
+      <td class="op">QJo</td>
+      <td class="darkpuple">JJ</td>
+      <td class="skyblue">JTs</td>
+      <td class="op">J9s</td>
+      <td class="op">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="op">ATo</td>
+      <td class="op">KTo</td>
+      <td class="op">QTo</td>
+      <td class="op">JTo</td>
+      <td class="blue">TT</td>
+      <td class="skyblue">T9s</td>
+      <td class="op">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="op">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="skyblue">99</td>
+      <td class="skyblue">98s</td>
+      <td class="op">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="skyblue">88</td>
+      <td class="op">87s</td>
+      <td class="op">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="skyblue">77</td>
+      <td class="op">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr class="op">
+      <td>A6o</td>
+      <td>K6o</td>
+      <td>Q6o</td>
+      <td>J6o</td>
+      <td>T6o</td>
+      <td>96o</td>
+      <td>86o</td>
+      <td>76o</td>
+      <td>66</td>
+      <td>65s</td>
+      <td>64s</td>
+      <td>63s</td>
+      <td>62s</td>
+    </tr>
+    <tr class="op">
+      <td>A5o</td>
+      <td>K5o</td>
+      <td>Q5o</td>
+      <td>J5o</td>
+      <td>T5o</td>
+      <td>95o</td>
+      <td>85o</td>
+      <td>75o</td>
+      <td>65o</td>
+      <td>55</td>
+      <td>54s</td>
+      <td>53s</td>
+      <td>52s</td>
+    </tr>
+    <tr class="op">
+      <td>A4o</td>
+      <td>K4o</td>
+      <td>Q4o</td>
+      <td>J4o</td>
+      <td>T4o</td>
+      <td>94o</td>
+      <td>84o</td>
+      <td>74o</td>
+      <td>64o</td>
+      <td>54o</td>
+      <td>44</td>
+      <td>43s</td>
+      <td>42s</td>
+    </tr>
+    <tr class="op">
+      <td>A3o</td>
+      <td>K3o</td>
+      <td>Q3o</td>
+      <td>J3o</td>
+      <td>T3o</td>
+      <td>93o</td>
+      <td>83o</td>
+      <td>73o</td>
+      <td>63o</td>
+      <td>53o</td>
+      <td>43o</td>
+      <td>33</td>
+      <td>32s</td>
+    </tr>
+    <tr class="op">
+      <td>A2o</td>
+      <td>K2o</td>
+      <td>Q2o</td>
+      <td>J2o</td>
+      <td>T2o</td>
+      <td>92o</td>
+      <td>82o</td>
+      <td>72o</td>
+      <td>62o</td>
+      <td>52o</td>
+      <td>42o</td>
+      <td>32o</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="deeppink">4bet -40bb</td>
+      <td colspan="4" class="red">4bet</td>
+      <td colspan="4" class="darkpuple">4bet -30bb</td>
+    </tr>
+    <tr>
+      <td colspan="13" class="blue">call vs 3bet</td>
+    </tr>
+  </table>
+  <table id="rfiMp" class="rfi table table-bordered text-center d-none">
+    <tr>
+      <td class="red">AA</td>
+      <td class="deeppink">AKs</td>
+      <td class="darkpuple">AQs</td>
+      <td class="blue">AJs</td>
+      <td class="blue">ATs</td>
+      <td class="skyblue">A9s</td>
+      <td class="skyblue">A8s</td>
+      <td class="op">A7s</td>
+      <td class="op">A6s</td>
+      <td class="skyblue">A5s</td>
+      <td class="skyblue">A4s</td>
+      <td class="skyblue">A3s</td>
+      <td class="skyblue">A2s</td>
+    </tr>
+    <tr>
+      <td class="deeppink">AKo</td>
+      <td class="red">KK</td>
+      <td class="blue">KQs</td>
+      <td class="blue">KJs</td>
+      <td class="skyblue">KTs</td>
+      <td class="op">K9s</td>
+      <td class="op">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="darkpuple">AQo</td>
+      <td class="skyblue">KQo</td>
+      <td class="deeppink">QQ</td>
+      <td class="blue">QJs</td>
+      <td class="skyblue">QTs</td>
+      <td class="op">Q9s</td>
+      <td class="op">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">AJo</td>
+      <td class="skyblue">KJo</td>
+      <td class="op">QJo</td>
+      <td class="darkpuple">JJ</td>
+      <td class="blue">JTs</td>
+      <td class="op">J9s</td>
+      <td class="op">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">ATo</td>
+      <td class="op">KTo</td>
+      <td class="op">QTo</td>
+      <td class="op">JTo</td>
+      <td class="darkpuple">TT</td>
+      <td class="skyblue">T9s</td>
+      <td class="op">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="op">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="darkpuple">99</td>
+      <td class="skyblue">98s</td>
+      <td class="op">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="blue">88</td>
+      <td class="skyblue">87s</td>
+      <td class="op">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="skyblue">77</td>
+      <td class="op">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="skyblue">66</td>
+      <td class="op">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="skyblue">55</td>
+      <td class="op">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr class="op">
+      <td>A4o</td>
+      <td>K4o</td>
+      <td>Q4o</td>
+      <td>J4o</td>
+      <td>T4o</td>
+      <td>94o</td>
+      <td>84o</td>
+      <td>74o</td>
+      <td>64o</td>
+      <td>54o</td>
+      <td>44</td>
+      <td>43s</td>
+      <td>42s</td>
+    </tr>
+    <tr class="op">
+      <td>A3o</td>
+      <td>K3o</td>
+      <td>Q3o</td>
+      <td>J3o</td>
+      <td>T3o</td>
+      <td>93o</td>
+      <td>83o</td>
+      <td>73o</td>
+      <td>63o</td>
+      <td>53o</td>
+      <td>43o</td>
+      <td>33</td>
+      <td>32s</td>
+    </tr>
+    <tr class="op">
+      <td>A2o</td>
+      <td>K2o</td>
+      <td>Q2o</td>
+      <td>J2o</td>
+      <td>T2o</td>
+      <td>92o</td>
+      <td>82o</td>
+      <td>72o</td>
+      <td>62o</td>
+      <td>52o</td>
+      <td>42o</td>
+      <td>32o</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="deeppink">4bet -40bb</td>
+      <td colspan="4" class="red">4bet</td>
+      <td colspan="4" class="darkpuple">4bet -30bb</td>
+    </tr>
+    <tr>
+      <td colspan="13" class="blue">call vs 3bet</td>
+    </tr>
+  </table>
+  <table id="rfiHj" class="rfi table table-bordered text-center d-none">
+    <tr>
+      <td class="red">AA</td>
+      <td class="deeppink">AKs</td>
+      <td class="darkpuple">AQs</td>
+      <td class="blue">AJs</td>
+      <td class="blue">ATs</td>
+      <td class="blue">A9s</td>
+      <td class="skyblue">A8s</td>
+      <td class="skyblue">A7s</td>
+      <td class="skyblue">A6s</td>
+      <td class="skyblue">A5s</td>
+      <td class="skyblue">A4s</td>
+      <td class="skyblue">A3s</td>
+      <td class="skyblue">A2s</td>
+    </tr>
+    <tr>
+      <td class="deeppink">AKo</td>
+      <td class="red">KK</td>
+      <td class="blue">KQs</td>
+      <td class="blue">KJs</td>
+      <td class="skyblue">KTs</td>
+      <td class="skyblue">K9s</td>
+      <td class="op">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="darkpuple">AQo</td>
+      <td class="blue">KQo</td>
+      <td class="deeppink">QQ</td>
+      <td class="blue">QJs</td>
+      <td class="skyblue">QTs</td>
+      <td class="skyblue">Q9s</td>
+      <td class="op">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="blue">AJo</td>
+      <td class="skyblue">KJo</td>
+      <td class="skyblue">QJo</td>
+      <td class="deeppink">JJ</td>
+      <td class="blue">JTs</td>
+      <td class="skyblue">J9s</td>
+      <td class="op">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">ATo</td>
+      <td class="op">KTo</td>
+      <td class="op">QTo</td>
+      <td class="op">JTo</td>
+      <td class="darkpuple">TT</td>
+      <td class="blue">T9s</td>
+      <td class="op">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="darkpuple">99</td>
+      <td class="skyblue">98s</td>
+      <td class="op">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="blue">88</td>
+      <td class="skyblue">87s</td>
+      <td class="op">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="skyblue">77</td>
+      <td class="skyblue">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="skyblue">66</td>
+      <td class="op">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="skyblue">55</td>
+      <td class="op">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="op">A4o</td>
+      <td  class="op">K4o</td>
+      <td  class="op">Q4o</td>
+      <td  class="op">J4o</td>
+      <td  class="op">T4o</td>
+      <td  class="op">94o</td>
+      <td  class="op">84o</td>
+      <td  class="op">74o</td>
+      <td  class="op">64o</td>
+      <td  class="op">54o</td>
+      <td class="skyblue">44</td>
+      <td  class="op">43s</td>
+      <td  class="op">42s</td>
+    </tr>
+    <tr>
+      <td  class="op">A3o</td>
+      <td  class="op">K3o</td>
+      <td  class="op">Q3o</td>
+      <td  class="op">J3o</td>
+      <td  class="op">T3o</td>
+      <td  class="op">93o</td>
+      <td  class="op">83o</td>
+      <td  class="op">73o</td>
+      <td  class="op">63o</td>
+      <td  class="op">53o</td>
+      <td  class="op">43o</td>
+      <td class="skyblue">33</td>
+      <td  class="op">32s</td>
+    </tr>
+    <tr>
+      <td  class="op">A2o</td>
+      <td  class="op">K2o</td>
+      <td  class="op">Q2o</td>
+      <td  class="op">J2o</td>
+      <td  class="op">T2o</td>
+      <td  class="op">92o</td>
+      <td  class="op">82o</td>
+      <td  class="op">72o</td>
+      <td  class="op">62o</td>
+      <td  class="op">52o</td>
+      <td  class="op">42o</td>
+      <td  class="op">32o</td>
+      <td class="skyblue">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="deeppink">4bet -40bb</td>
+      <td colspan="4" class="red">4bet</td>
+      <td colspan="4" class="darkpuple">4bet -30bb</td>
+    </tr>
+    <tr>
+      <td colspan="13" class="blue">call vs 3bet</td>
+    </tr>
+  </table>
+  <table id="rfiCo" class="rfi table table-bordered text-center d-none">
+    <tr>
+      <td class="red">AA</td>
+      <td class="deeppink">AKs</td>
+      <td class="darkpuple">AQs</td>
+      <td class="blue">AJs</td>
+      <td class="blue">ATs</td>
+      <td class="blue">A9s</td>
+      <td class="blue">A8s</td>
+      <td class="green">A7s</td>
+      <td class="green">A6s</td>
+      <td class="skyblue">A5s</td>
+      <td class="skyblue">A4s</td>
+      <td class="skyblue">A3s</td>
+      <td class="skyblue">A2s</td>
+    </tr>
+    <tr>
+      <td class="deeppink">AKo</td>
+      <td class="red">KK</td>
+      <td class="blue">KQs</td>
+      <td class="blue">KJs</td>
+      <td class="blue">KTs</td>
+      <td class="skyblue">K9s</td>
+      <td class="skyblue">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="darkpuple">AQo</td>
+      <td class="blue">KQo</td>
+      <td class="red">QQ</td>
+      <td class="blue">QJs</td>
+      <td class="blue">QTs</td>
+      <td class="skyblue">Q9s</td>
+      <td class="skyblue">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="blue">AJo</td>
+      <td class="green">KJo</td>
+      <td class="skyblue">QJo</td>
+      <td class="deeppink">JJ</td>
+      <td class="blue">JTs</td>
+      <td class="skyblue">J9s</td>
+      <td class="skyblue">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="blue">ATo</td>
+      <td class="skyblue">KTo</td>
+      <td class="skyblue">QTo</td>
+      <td class="skyblue">JTo</td>
+      <td class="darkpuple">TT</td>
+      <td class="blue">T9s</td>
+      <td class="skyblue">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="green">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="darkpuple">99</td>
+      <td class="blue">98s</td>
+      <td class="skyblue">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="darkpuple">88</td>
+      <td class="skyblue">87s</td>
+      <td class="skyblue">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="skyblue">77</td>
+      <td class="skyblue">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="skyblue">66</td>
+      <td class="skyblue">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="skyblue">55</td>
+      <td class="op">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A4o</td>
+      <td  class="op">K4o</td>
+      <td  class="op">Q4o</td>
+      <td  class="op">J4o</td>
+      <td  class="op">T4o</td>
+      <td  class="op">94o</td>
+      <td  class="op">84o</td>
+      <td  class="op">74o</td>
+      <td  class="op">64o</td>
+      <td  class="op">54o</td>
+      <td class="skyblue">44</td>
+      <td  class="op">43s</td>
+      <td  class="op">42s</td>
+    </tr>
+    <tr>
+      <td  class="skyblue">A3o</td>
+      <td  class="op">K3o</td>
+      <td  class="op">Q3o</td>
+      <td  class="op">J3o</td>
+      <td  class="op">T3o</td>
+      <td  class="op">93o</td>
+      <td  class="op">83o</td>
+      <td  class="op">73o</td>
+      <td  class="op">63o</td>
+      <td  class="op">53o</td>
+      <td  class="op">43o</td>
+      <td class="skyblue">33</td>
+      <td  class="op">32s</td>
+    </tr>
+    <tr>
+      <td  class="skyblue">A2o</td>
+      <td  class="op">K2o</td>
+      <td  class="op">Q2o</td>
+      <td  class="op">J2o</td>
+      <td  class="op">T2o</td>
+      <td  class="op">92o</td>
+      <td  class="op">82o</td>
+      <td  class="op">72o</td>
+      <td  class="op">62o</td>
+      <td  class="op">52o</td>
+      <td  class="op">42o</td>
+      <td  class="op">32o</td>
+      <td class="skyblue">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="deeppink">4bet -40bb</td>
+      <td colspan="4" class="red">4bet</td>
+      <td colspan="4" class="darkpuple">4bet -30bb</td>
+    </tr>
+    <tr>
+      <td colspan="6" class="green">4bet bluff</td>
+      <td colspan="7" class="blue">call vs 3bet</td>
+    </tr>
+  </table>
+  <table id="rfiBu" class="rfi table table-bordered text-center d-none">
+    <tr>
+      <td class="red">AA</td>
+      <td class="deeppink">AKs</td>
+      <td class="darkpuple">AQs</td>
+      <td class="darkpuple">AJs</td>
+      <td class="blue">ATs</td>
+      <td class="blue">A9s</td>
+      <td class="blue">A8s</td>
+      <td class="green">A7s</td>
+      <td class="green">A6s</td>
+      <td class="blue">A5s</td>
+      <td class="blue">A4s</td>
+      <td class="blue">A3s</td>
+      <td class="blue">A2s</td>
+    </tr>
+    <tr>
+      <td class="deeppink">AKo</td>
+      <td class="red">KK</td>
+      <td class="blue">KQs</td>
+      <td class="blue">KJs</td>
+      <td class="blue">KTs</td>
+      <td class="blue">K9s</td>
+      <td class="skyblue">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="darkpuple">AQo</td>
+      <td class="blue">KQo</td>
+      <td class="red">QQ</td>
+      <td class="blue">QJs</td>
+      <td class="blue">QTs</td>
+      <td class="blue">Q9s</td>
+      <td class="skyblue">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="blue">AJo</td>
+      <td class="blue">KJo</td>
+      <td class="green">QJo</td>
+      <td class="deeppink">JJ</td>
+      <td class="blue">JTs</td>
+      <td class="blue">J9s</td>
+      <td class="skyblue">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="blue">ATo</td>
+      <td class="skyblue">KTo</td>
+      <td class="skyblue">QTo</td>
+      <td class="skyblue">JTo</td>
+      <td class="deeppink">TT</td>
+      <td class="blue">T9s</td>
+      <td class="skyblue">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="green">A9o</td>
+      <td class="skyblue">K9o</td>
+      <td class="skyblue">Q9o</td>
+      <td class="skyblue">J9o</td>
+      <td class="skyblue">T9o</td>
+      <td class="darkpuple">99</td>
+      <td class="blue">98s</td>
+      <td class="skyblue">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="darkpuple">88</td>
+      <td class="blue">87s</td>
+      <td class="skyblue">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="darkpuple">77</td>
+      <td class="skyblue">76s</td>
+      <td class="skyblue">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="skyblue">66</td>
+      <td class="skyblue">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="skyblue">55</td>
+      <td class="skyblue">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A4o</td>
+      <td  class="op">K4o</td>
+      <td  class="op">Q4o</td>
+      <td  class="op">J4o</td>
+      <td  class="op">T4o</td>
+      <td  class="op">94o</td>
+      <td  class="op">84o</td>
+      <td  class="op">74o</td>
+      <td  class="op">64o</td>
+      <td  class="op">54o</td>
+      <td class="skyblue">44</td>
+      <td  class="op">43s</td>
+      <td  class="op">42s</td>
+    </tr>
+    <tr>
+      <td  class="skyblue">A3o</td>
+      <td  class="op">K3o</td>
+      <td  class="op">Q3o</td>
+      <td  class="op">J3o</td>
+      <td  class="op">T3o</td>
+      <td  class="op">93o</td>
+      <td  class="op">83o</td>
+      <td  class="op">73o</td>
+      <td  class="op">63o</td>
+      <td  class="op">53o</td>
+      <td  class="op">43o</td>
+      <td class="skyblue">33</td>
+      <td  class="op">32s</td>
+    </tr>
+    <tr>
+      <td  class="skyblue">A2o</td>
+      <td  class="op">K2o</td>
+      <td  class="op">Q2o</td>
+      <td  class="op">J2o</td>
+      <td  class="op">T2o</td>
+      <td  class="op">92o</td>
+      <td  class="op">82o</td>
+      <td  class="op">72o</td>
+      <td  class="op">62o</td>
+      <td  class="op">52o</td>
+      <td  class="op">42o</td>
+      <td  class="op">32o</td>
+      <td class="skyblue">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="deeppink">4bet -40bb</td>
+      <td colspan="4" class="red">4bet</td>
+      <td colspan="4" class="darkpuple">4bet -30bb</td>
+    </tr>
+    <tr>
+      <td colspan="6" class="green">4bet bluff</td>
+      <td colspan="7" class="blue">call vs 3bet</td>
+    </tr>
+  </table>
+  <table id="rfiSb" class="rfi table table-bordered text-center d-none">
+    <tr>
+      <td class="red">AA</td>
+      <td class="red">AKs</td>
+      <td class="deeppink">AQs</td>
+      <td class="darkpuple">AJs</td>
+      <td class="blue">ATs</td>
+      <td class="blue">A9s</td>
+      <td class="blue">A8s</td>
+      <td class="blue">A7s</td>
+      <td class="blue">A6s</td>
+      <td class="blue">A5s</td>
+      <td class="blue">A4s</td>
+      <td class="blue">A3s</td>
+      <td class="blue">A2s</td>
+    </tr>
+    <tr>
+      <td class="red">AKo</td>
+      <td class="red">KK</td>
+      <td class="darkpuple">KQs</td>
+      <td class="blue">KJs</td>
+      <td class="blue">KTs</td>
+      <td class="blue">K9s</td>
+      <td class="green">K8s</td>
+      <td class="skyblue">K7s</td>
+      <td class="skyblue">K6s</td>
+      <td class="skyblue">K5s</td>
+      <td class="skyblue">K4s</td>
+      <td class="skyblue">K3s</td>
+      <td class="skyblue">K2s</td>
+    </tr>
+    <tr>
+      <td class="deeppink">AQo</td>
+      <td class="blue">KQo</td>
+      <td class="red">QQ</td>
+      <td class="blue">QJs</td>
+      <td class="blue">QTs</td>
+      <td class="blue">Q9s</td>
+      <td class="green">Q8s</td>
+      <td class="skyblue">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="blue">AJo</td>
+      <td class="blue">KJo</td>
+      <td class="blue">QJo</td>
+      <td class="deeppink">JJ</td>
+      <td class="blue">JTs</td>
+      <td class="blue">J9s</td>
+      <td class="green">J8s</td>
+      <td class="skyblue">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="blue">ATo</td>
+      <td class="skyblue">KTo</td>
+      <td class="skyblue">QTo</td>
+      <td class="skyblue">JTo</td>
+      <td class="deeppink">TT</td>
+      <td class="blue">T9s</td>
+      <td class="green">T8s</td>
+      <td class="skyblue">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A9o</td>
+      <td class="skyblue">K9o</td>
+      <td class="skyblue">Q9o</td>
+      <td class="skyblue">J9o</td>
+      <td class="skyblue">T9o</td>
+      <td class="deeppink">99</td>
+      <td class="blue">98s</td>
+      <td class="skyblue">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A8o</td>
+      <td class="skyblue">K8o</td>
+      <td class="skyblue">Q8o</td>
+      <td class="skyblue">J8o</td>
+      <td class="skyblue">T8o</td>
+      <td class="skyblue">98o</td>
+      <td class="darkpuple">88</td>
+      <td class="blue">87s</td>
+      <td class="skyblue">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="darkpuple">77</td>
+      <td class="skyblue">76s</td>
+      <td class="skyblue">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="skyblue">66</td>
+      <td class="skyblue">65s</td>
+      <td class="skyblue">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="skyblue">55</td>
+      <td class="skyblue">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="skyblue">A4o</td>
+      <td  class="op">K4o</td>
+      <td  class="op">Q4o</td>
+      <td  class="op">J4o</td>
+      <td  class="op">T4o</td>
+      <td  class="op">94o</td>
+      <td  class="op">84o</td>
+      <td  class="op">74o</td>
+      <td  class="op">64o</td>
+      <td  class="op">54o</td>
+      <td class="skyblue">44</td>
+      <td  class="op">43s</td>
+      <td  class="op">42s</td>
+    </tr>
+    <tr>
+      <td  class="skyblue">A3o</td>
+      <td  class="op">K3o</td>
+      <td  class="op">Q3o</td>
+      <td  class="op">J3o</td>
+      <td  class="op">T3o</td>
+      <td  class="op">93o</td>
+      <td  class="op">83o</td>
+      <td  class="op">73o</td>
+      <td  class="op">63o</td>
+      <td  class="op">53o</td>
+      <td  class="op">43o</td>
+      <td class="skyblue">33</td>
+      <td  class="op">32s</td>
+    </tr>
+    <tr>
+      <td  class="skyblue">A2o</td>
+      <td  class="op">K2o</td>
+      <td  class="op">Q2o</td>
+      <td  class="op">J2o</td>
+      <td  class="op">T2o</td>
+      <td  class="op">92o</td>
+      <td  class="op">82o</td>
+      <td  class="op">72o</td>
+      <td  class="op">62o</td>
+      <td  class="op">52o</td>
+      <td  class="op">42o</td>
+      <td  class="op">32o</td>
+      <td class="skyblue">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="deeppink">4bet -40bb</td>
+      <td colspan="4" class="red">4bet</td>
+      <td colspan="4" class="darkpuple">4bet -30bb</td>
+    </tr>
+    <tr>
+      <td colspan="6" class="green">4bet bluff</td>
+      <td colspan="7" class="blue">call vs 3bet</td>
+    </tr>
+  </table>
+</div>
+<div class="table-place place-cc ">
+  <div class="button-block-vs btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="radio" name="options" id="utgvsutg" autocomplete="off" checked> UTG+2 vs UTG + 1
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="mpvsutg" autocomplete="off"> MP vs UTG
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="hjcobuvsutgmp" autocomplete="off"> HJ, CO, BU vs UTG, MP
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="byvshjco" autocomplete="off"> BU VS HJ, CO
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="sbvshjcobu" autocomplete="off"> SB VS HJ, CO, BU
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="sbvs" autocomplete="off"> SB
+    </label>
+  </div>
+  <table class="table table-bordered text-center d-none" id="utg-vs-utg">
+    <tr>
+      <td class="red">AA</td>
+      <td class="red">AKs</td>
+      <td class="orange">AQs</td>
+      <td class="orange">AJs</td>
+      <td class="pink">ATs</td>
+      <td class="op">A9s</td>
+      <td class="op">A8s</td>
+      <td class="op">A7s</td>
+      <td class="op">A6s</td>
+      <td class="op">A5s</td>
+      <td class="op">A4s</td>
+      <td class="op">A3s</td>
+      <td class="op">A2s</td>
+    </tr>
+    <tr>
+      <td class="red">AKo</td>
+      <td class="red">KK</td>
+      <td class="orange">KQs</td>
+      <td class="pink">KJs</td>
+      <td class="op">KTs</td>
+      <td class="op">K9s</td>
+      <td class="op">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="pink">AQo</td>
+      <td class="op">KQo</td>
+      <td class="red">QQ</td>
+      <td class="orange">QJs</td>
+      <td class="op">QTs</td>
+      <td class="op">Q9s</td>
+      <td class="op">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="op">AJo</td>
+      <td class="op">KJo</td>
+      <td class="op">QJo</td>
+      <td class="orange">JJ</td>
+      <td class="orange">JTs</td>
+      <td class="op">J9s</td>
+      <td class="op">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="op">ATo</td>
+      <td class="op">KTo</td>
+      <td class="op">QTo</td>
+      <td class="op">JTo</td>
+      <td class="orange">TT</td>
+      <td class="orange">T9s</td>
+      <td class="op">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="op">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="orange">99</td>
+      <td class="op">98s</td>
+      <td class="op">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="orange">88</td>
+      <td class="op">87s</td>
+      <td class="op">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="orange">77</td>
+      <td class="op">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="op">66</td>
+      <td class="op">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="op">55</td>
+      <td class="op">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="op">A4o</td>
+      <td class="op">K4o</td>
+      <td class="op">Q4o</td>
+      <td class="op">J4o</td>
+      <td class="op">T4o</td>
+      <td class="op">94o</td>
+      <td class="op">84o</td>
+      <td class="op">74o</td>
+      <td class="op">64o</td>
+      <td class="op">54o</td>
+      <td class="op">44</td>
+      <td class="op">43s</td>
+      <td class="op">42s</td>
+    </tr>
+    <tr>
+      <td class="op">A3o</td>
+      <td class="op">K3o</td>
+      <td class="op">Q3o</td>
+      <td class="op">J3o</td>
+      <td class="op">T3o</td>
+      <td class="op">93o</td>
+      <td class="op">83o</td>
+      <td class="op">73o</td>
+      <td class="op">63o</td>
+      <td class="op">53o</td>
+      <td class="op">43o</td>
+      <td class="op">33</td>
+      <td class="op">32s</td>
+    </tr>
+    <tr>
+      <td class="op">A2o</td>
+      <td class="op">K2o</td>
+      <td class="op">Q2o</td>
+      <td class="op">J2o</td>
+      <td class="op">T2o</td>
+      <td class="op">92o</td>
+      <td class="op">82o</td>
+      <td class="op">72o</td>
+      <td class="op">62o</td>
+      <td class="op">52o</td>
+      <td class="op">42o</td>
+      <td class="op">32o</td>
+      <td class="op">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="red">3bet/call vs 4bet</td>
+      <td colspan="4" class="orange">CC</td>
+      <td colspan="4" class="pink">3bet Bluf</td>
+    </tr>
+  </table>
+  <table class="table table-bordered text-center d-none" id="mp-vs-utg">
+    <tr>
+      <td class="red">AA</td>
+      <td class="red">AKs</td>
+      <td class="orange">AQs</td>
+      <td class="orange">AJs</td>
+      <td class="orange">ATs</td>
+      <td class="pink">A9s</td>
+      <td class="op">A8s</td>
+      <td class="op">A7s</td>
+      <td class="op">A6s</td>
+      <td class="orange">A5s</td>
+      <td class="orange">A4s</td>
+      <td class="orange">A3s</td>
+      <td class="orange">A2s</td>
+    </tr>
+    <tr>
+      <td class="red">AKo</td>
+      <td class="red">KK</td>
+      <td class="orange">KQs</td>
+      <td class="orange">KJs</td>
+      <td class="pink">KTs</td>
+      <td class="op">K9s</td>
+      <td class="op">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="pink">AQo</td>
+      <td class="op">KQo</td>
+      <td class="red">QQ</td>
+      <td class="orange">QJs</td>
+      <td class="orange">QTs</td>
+      <td class="op">Q9s</td>
+      <td class="op">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="op">AJo</td>
+      <td class="op">KJo</td>
+      <td class="op">QJo</td>
+      <td class="orange">JJ</td>
+      <td class="orange">JTs</td>
+      <td class="op">J9s</td>
+      <td class="op">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="op">ATo</td>
+      <td class="op">KTo</td>
+      <td class="op">QTo</td>
+      <td class="op">JTo</td>
+      <td class="orange">TT</td>
+      <td class="orange">T9s</td>
+      <td class="op">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="op">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="orange">99</td>
+      <td class="orange">98s</td>
+      <td class="op">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="orange">88</td>
+      <td class="op">87s</td>
+      <td class="op">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="orange">77</td>
+      <td class="op">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="orange">66</td>
+      <td class="op">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="orange">55</td>
+      <td class="op">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="op">A4o</td>
+      <td class="op">K4o</td>
+      <td class="op">Q4o</td>
+      <td class="op">J4o</td>
+      <td class="op">T4o</td>
+      <td class="op">94o</td>
+      <td class="op">84o</td>
+      <td class="op">74o</td>
+      <td class="op">64o</td>
+      <td class="op">54o</td>
+      <td class="op">44</td>
+      <td class="op">43s</td>
+      <td class="op">42s</td>
+    </tr>
+    <tr>
+      <td class="op">A3o</td>
+      <td class="op">K3o</td>
+      <td class="op">Q3o</td>
+      <td class="op">J3o</td>
+      <td class="op">T3o</td>
+      <td class="op">93o</td>
+      <td class="op">83o</td>
+      <td class="op">73o</td>
+      <td class="op">63o</td>
+      <td class="op">53o</td>
+      <td class="op">43o</td>
+      <td class="op">33</td>
+      <td class="op">32s</td>
+    </tr>
+    <tr>
+      <td class="op">A2o</td>
+      <td class="op">K2o</td>
+      <td class="op">Q2o</td>
+      <td class="op">J2o</td>
+      <td class="op">T2o</td>
+      <td class="op">92o</td>
+      <td class="op">82o</td>
+      <td class="op">72o</td>
+      <td class="op">62o</td>
+      <td class="op">52o</td>
+      <td class="op">42o</td>
+      <td class="op">32o</td>
+      <td class="op">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="red">3bet/call vs 4bet</td>
+      <td colspan="4" class="orange">CC</td>
+      <td colspan="4" class="pink">3bet Bluf</td>
+    </tr>
+  </table>
+  <table class="table table-bordered text-center d-none" id="hj-co-bu-vs-utg-mp">
+    <tr>
+      <td class="red">AA</td>
+      <td class="red">AKs</td>
+      <td class="orange">AQs</td>
+      <td class="orange">AJs</td>
+      <td class="orange">ATs</td>
+      <td class="orange">A9s</td>
+      <td class="orange">A8s</td>
+      <td class="orange">A7s</td>
+      <td class="orange">A6s</td>
+      <td class="pink">A5s</td>
+      <td class="pink">A4s</td>
+      <td class="pink">A3s</td>
+      <td class="pink">A2s</td>
+    </tr>
+    <tr>
+      <td class="red">AKo</td>
+      <td class="red">KK</td>
+      <td class="orange">KQs</td>
+      <td class="orange">KJs</td>
+      <td class="orange">KTs</td>
+      <td class="orange">K9s</td>
+      <td class="op">K8s</td>
+      <td class="op">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="orange">AQo</td>
+      <td class="orange">KQo</td>
+      <td class="red">QQ</td>
+      <td class="orange">QJs</td>
+      <td class="orange">QTs</td>
+      <td class="orange">Q9s</td>
+      <td class="op">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="orange">AJo</td>
+      <td class="op">KJo</td>
+      <td class="op">QJo</td>
+      <td class="orange">JJ</td>
+      <td class="orange">JTs</td>
+      <td class="orange">J9s</td>
+      <td class="op">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="orange">ATo</td>
+      <td class="op">KTo</td>
+      <td class="op">QTo</td>
+      <td class="op">JTo</td>
+      <td class="orange">TT</td>
+      <td class="orange">T9s</td>
+      <td class="orange">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="op">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="orange">99</td>
+      <td class="orange">98s</td>
+      <td class="orange">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="orange">88</td>
+      <td class="orange">87s</td>
+      <td class="orange">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="orange">77</td>
+      <td class="orange">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="orange">66</td>
+      <td class="orange">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="orange">55</td>
+      <td class="orange">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="op">A4o</td>
+      <td class="op">K4o</td>
+      <td class="op">Q4o</td>
+      <td class="op">J4o</td>
+      <td class="op">T4o</td>
+      <td class="op">94o</td>
+      <td class="op">84o</td>
+      <td class="op">74o</td>
+      <td class="op">64o</td>
+      <td class="op">54o</td>
+      <td class="orange">44</td>
+      <td class="op">43s</td>
+      <td class="op">42s</td>
+    </tr>
+    <tr>
+      <td class="op">A3o</td>
+      <td class="op">K3o</td>
+      <td class="op">Q3o</td>
+      <td class="op">J3o</td>
+      <td class="op">T3o</td>
+      <td class="op">93o</td>
+      <td class="op">83o</td>
+      <td class="op">73o</td>
+      <td class="op">63o</td>
+      <td class="op">53o</td>
+      <td class="op">43o</td>
+      <td class="orange">33</td>
+      <td class="op">32s</td>
+    </tr>
+    <tr>
+      <td class="op">A2o</td>
+      <td class="op">K2o</td>
+      <td class="op">Q2o</td>
+      <td class="op">J2o</td>
+      <td class="op">T2o</td>
+      <td class="op">92o</td>
+      <td class="op">82o</td>
+      <td class="op">72o</td>
+      <td class="op">62o</td>
+      <td class="op">52o</td>
+      <td class="op">42o</td>
+      <td class="op">32o</td>
+      <td class="orange">22</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="red">3bet/call vs 4bet</td>
+      <td colspan="4" class="orange">CC</td>
+      <td colspan="4" class="pink">3bet Bluf</td>
+    </tr>
+  </table>
+  <table class="table table-bordered text-center d-none" id="bu-vs-hj-co">
+    <tr>
+      <td class="red">AA</td>
+      <td class="red">AKs</td>
+      <td class="red">AQs</td>
+      <td class="brown">AJs</td>
+      <td class="brown">ATs</td>
+      <td class="orange">A9s</td>
+      <td class="orange">A8s</td>
+      <td class="orange">A7s</td>
+      <td class="orange">A6s</td>
+      <td class="pink">A5s</td>
+      <td class="pink">A4s</td>
+      <td class="pink">A3s</td>
+      <td class="pink">A2s</td>
+    </tr>
+    <tr>
+      <td class="red">AKo</td>
+      <td class="red">KK</td>
+      <td class="brown">KQs</td>
+      <td class="brown">KJs</td>
+      <td class="orange">KTs</td>
+      <td class="orange">K9s</td>
+      <td class="orange">K8s</td>
+      <td class="orange">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="red">AQo</td>
+      <td class="brown">KQo</td>
+      <td class="red">QQ</td>
+      <td class="orange">QJs</td>
+      <td class="orange">QTs</td>
+      <td class="orange">Q9s</td>
+      <td class="orange">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="brown">AJo</td>
+      <td class="orange">KJo</td>
+      <td class="orange">QJo</td>
+      <td class="red">JJ</td>
+      <td class="orange">JTs</td>
+      <td class="orange">J9s</td>
+      <td class="orange">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="orange">ATo</td>
+      <td class="orange">KTo</td>
+      <td class="orange">QTo</td>
+      <td class="orange">JTo</td>
+      <td class="orange">TT</td>
+      <td class="orange">T9s</td>
+      <td class="orange">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="orange">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="orange">99</td>
+      <td class="orange">98s</td>
+      <td class="pink">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="orange">88</td>
+      <td class="orange">87s</td>
+      <td class="pink">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="orange">77</td>
+      <td class="orange">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="orange">66</td>
+      <td class="orange">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="orange">55</td>
+      <td class="orange">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="op">A4o</td>
+      <td class="op">K4o</td>
+      <td class="op">Q4o</td>
+      <td class="op">J4o</td>
+      <td class="op">T4o</td>
+      <td class="op">94o</td>
+      <td class="op">84o</td>
+      <td class="op">74o</td>
+      <td class="op">64o</td>
+      <td class="op">54o</td>
+      <td class="orange">44</td>
+      <td class="op">43s</td>
+      <td class="op">42s</td>
+    </tr>
+    <tr>
+      <td class="op">A3o</td>
+      <td class="op">K3o</td>
+      <td class="op">Q3o</td>
+      <td class="op">J3o</td>
+      <td class="op">T3o</td>
+      <td class="op">93o</td>
+      <td class="op">83o</td>
+      <td class="op">73o</td>
+      <td class="op">63o</td>
+      <td class="op">53o</td>
+      <td class="op">43o</td>
+      <td class="orange">33</td>
+      <td class="op">32s</td>
+    </tr>
+    <tr>
+      <td class="op">A2o</td>
+      <td class="op">K2o</td>
+      <td class="op">Q2o</td>
+      <td class="op">J2o</td>
+      <td class="op">T2o</td>
+      <td class="op">92o</td>
+      <td class="op">82o</td>
+      <td class="op">72o</td>
+      <td class="op">62o</td>
+      <td class="op">52o</td>
+      <td class="op">42o</td>
+      <td class="op">32o</td>
+      <td class="orange">22</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="red">3bet/call vs 4bet</td>
+      <td colspan="3" class="orange">CC</td>
+      <td colspan="3" class="pink">Bluf</td>
+      <td colspan="3" class="brown">3bet 4bet fold</td>
+    </tr>
+  </table>
+  <table class="table table-bordered text-center" id="sb-vs-hj-co-bu">
+    <tr>
+      <td class="red">AA</td>
+      <td class="red">AKs</td>
+      <td class="red">AQs</td>
+      <td class="red">AJs</td>
+      <td class="orange">ATs</td>
+      <td class="orange">A9s</td>
+      <td class="orange">A8s</td>
+      <td class="orange">A7s</td>
+      <td class="orange">A6s</td>
+      <td class="pink">A5s</td>
+      <td class="pink">A4s</td>
+      <td class="pink">A3s</td>
+      <td class="pink">A2s</td>
+    </tr>
+    <tr>
+      <td class="red">AKo</td>
+      <td class="red">KK</td>
+      <td class="brown">KQs</td>
+      <td class="brown">KJs</td>
+      <td class="orange">KTs</td>
+      <td class="orange">K9s</td>
+      <td class="orange">K8s</td>
+      <td class="orange">K7s</td>
+      <td class="op">K6s</td>
+      <td class="op">K5s</td>
+      <td class="op">K4s</td>
+      <td class="op">K3s</td>
+      <td class="op">K2s</td>
+    </tr>
+    <tr>
+      <td class="red">AQo</td>
+      <td class="brown">KQo</td>
+      <td class="red">QQ</td>
+      <td class="orange">QJs</td>
+      <td class="orange">QTs</td>
+      <td class="orange">Q9s</td>
+      <td class="orange">Q8s</td>
+      <td class="op">Q7s</td>
+      <td class="op">Q6s</td>
+      <td class="op">Q5s</td>
+      <td class="op">Q4s</td>
+      <td class="op">Q3s</td>
+      <td class="op">Q2s</td>
+    </tr>
+    <tr>
+      <td class="brown">AJo</td>
+      <td class="orange">KJo</td>
+      <td class="orange">QJo</td>
+      <td class="red">JJ</td>
+      <td class="orange">JTs</td>
+      <td class="orange">J9s</td>
+      <td class="orange">J8s</td>
+      <td class="op">J7s</td>
+      <td class="op">J6s</td>
+      <td class="op">J5s</td>
+      <td class="op">J4s</td>
+      <td class="op">J3s</td>
+      <td class="op">J2s</td>
+    </tr>
+    <tr>
+      <td class="orange">ATo</td>
+      <td class="orange">KTo</td>
+      <td class="orange">QTo</td>
+      <td class="orange">JTo</td>
+      <td class="orange">TT</td>
+      <td class="orange">T9s</td>
+      <td class="orange">T8s</td>
+      <td class="op">T7s</td>
+      <td class="op">T6s</td>
+      <td class="op">T5s</td>
+      <td class="op">T4s</td>
+      <td class="op">T3s</td>
+      <td class="op">T2s</td>
+    </tr>
+    <tr>
+      <td class="orange">A9o</td>
+      <td class="op">K9o</td>
+      <td class="op">Q9o</td>
+      <td class="op">J9o</td>
+      <td class="op">T9o</td>
+      <td class="orange">99</td>
+      <td class="orange">98s</td>
+      <td class="pink">97s</td>
+      <td class="op">96s</td>
+      <td class="op">95s</td>
+      <td class="op">94s</td>
+      <td class="op">93s</td>
+      <td class="op">92s</td>
+    </tr>
+    <tr>
+      <td class="op">A8o</td>
+      <td class="op">K8o</td>
+      <td class="op">Q8o</td>
+      <td class="op">J8o</td>
+      <td class="op">T8o</td>
+      <td class="op">98o</td>
+      <td class="orange">88</td>
+      <td class="orange">87s</td>
+      <td class="pink">86s</td>
+      <td class="op">85s</td>
+      <td class="op">84s</td>
+      <td class="op">83s</td>
+      <td class="op">82s</td>
+    </tr>
+    <tr>
+      <td class="op">A7o</td>
+      <td class="op">K7o</td>
+      <td class="op">Q7o</td>
+      <td class="op">J7o</td>
+      <td class="op">T7o</td>
+      <td class="op">97o</td>
+      <td class="op">87o</td>
+      <td class="orange">77</td>
+      <td class="orange">76s</td>
+      <td class="op">75s</td>
+      <td class="op">74s</td>
+      <td class="op">73s</td>
+      <td class="op">72s</td>
+    </tr>
+    <tr>
+      <td class="op">A6o</td>
+      <td class="op">K6o</td>
+      <td class="op">Q6o</td>
+      <td class="op">J6o</td>
+      <td class="op">T6o</td>
+      <td class="op">96o</td>
+      <td class="op">86o</td>
+      <td class="op">76o</td>
+      <td class="orange">66</td>
+      <td class="orange">65s</td>
+      <td class="op">64s</td>
+      <td class="op">63s</td>
+      <td class="op">62s</td>
+    </tr>
+    <tr>
+      <td class="op">A5o</td>
+      <td class="op">K5o</td>
+      <td class="op">Q5o</td>
+      <td class="op">J5o</td>
+      <td class="op">T5o</td>
+      <td class="op">95o</td>
+      <td class="op">85o</td>
+      <td class="op">75o</td>
+      <td class="op">65o</td>
+      <td class="orange">55</td>
+      <td class="orange">54s</td>
+      <td class="op">53s</td>
+      <td class="op">52s</td>
+    </tr>
+    <tr>
+      <td class="op">A4o</td>
+      <td class="op">K4o</td>
+      <td class="op">Q4o</td>
+      <td class="op">J4o</td>
+      <td class="op">T4o</td>
+      <td class="op">94o</td>
+      <td class="op">84o</td>
+      <td class="op">74o</td>
+      <td class="op">64o</td>
+      <td class="op">54o</td>
+      <td class="orange">44</td>
+      <td class="op">43s</td>
+      <td class="op">42s</td>
+    </tr>
+    <tr>
+      <td class="op">A3o</td>
+      <td class="op">K3o</td>
+      <td class="op">Q3o</td>
+      <td class="op">J3o</td>
+      <td class="op">T3o</td>
+      <td class="op">93o</td>
+      <td class="op">83o</td>
+      <td class="op">73o</td>
+      <td class="op">63o</td>
+      <td class="op">53o</td>
+      <td class="op">43o</td>
+      <td class="orange">33</td>
+      <td class="op">32s</td>
+    </tr>
+    <tr>
+      <td class="op">A2o</td>
+      <td class="op">K2o</td>
+      <td class="op">Q2o</td>
+      <td class="op">J2o</td>
+      <td class="op">T2o</td>
+      <td class="op">92o</td>
+      <td class="op">82o</td>
+      <td class="op">72o</td>
+      <td class="op">62o</td>
+      <td class="op">52o</td>
+      <td class="op">42o</td>
+      <td class="op">32o</td>
+      <td class="orange">22</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="red">3bet/call vs 4bet</td>
+      <td colspan="3" class="orange">CC</td>
+      <td colspan="3" class="pink">Bluf</td>
+      <td colspan="3" class="brown">3bet 4bet fold</td>
+    </tr>
+  </table>
+</div>
+
+
+</body>
+</html>

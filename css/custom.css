@@ -1,0 +1,72 @@
+h1{
+    text-align: center;
+    margin: 15px;
+    font-size: 52px;
+}
+
+table{
+
+    font-weight: 700;
+}
+.op{
+    opacity: 0;
+}
+.red {
+    background-color: red;
+    color: #fff;
+}
+.orange{
+    background-color: orange;
+}
+.yellow{
+    background-color: yellow;
+}
+.op{
+    opacity: 0;
+}
+
+.deeppink {
+    background-color: deeppink;
+}
+
+.darkpuple {
+    background-color: rebeccapurple;
+    color: #fff;
+}
+
+.blue {
+    background-color: blue;
+    color: #fff;
+}
+
+.skyblue {
+    background-color: deepskyblue;
+}
+
+.green {
+    background-color: darkgreen;
+    color: #fff;
+}
+
+.button-block,.button-block-vs {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-block > label {
+    width: 100px;
+}
+.button-block-vs > label {
+    width: 200px;
+}
+
+.pink {
+    background-color: pink;
+}
+
+.brown {
+    background-color: saddlebrown;
+    color: #fff;
+}
