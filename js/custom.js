@@ -11,6 +11,14 @@
             this.co();
             this.bu();
             this.sb();
+            this.utgvsutg();
+            this.mpvsutg();
+            this.hjcobuvsutgmp();
+            this.buvshjco();
+            this.sbvshjcobu();
+            this.sbvsutgmp();
+            this.bbvssbbuhj();
+            this.bbvsutgmp()
         },
         iso: function () {
             var iso = jQuery('.place-iso'),
@@ -96,6 +104,54 @@
             jQuery('#sb').click(function () {
                 jQuery('.rfi').addClass('d-none');
                 jQuery('#rfiSb').removeClass('d-none');
+            })
+        },
+        utgvsutg: function(){
+            jQuery('#utgvsutg').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#utg-vs-utg').removeClass('d-none');
+            })
+        },
+        mpvsutg: function(){
+            jQuery('#mpvsutg').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#mp-vs-utg').removeClass('d-none');
+            })
+        },
+        hjcobuvsutgmp: function(){
+            jQuery('#hjcobuvsutgmp').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#hj-co-bu-vs-utg-mp').removeClass('d-none');
+            })
+        },
+        buvshjco: function(){
+            jQuery('#buvshjco').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#bu-vs-hj-co').removeClass('d-none');
+            })
+        },
+        sbvshjcobu: function(){
+            jQuery('#sbvshjcobu').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#sb-vs-hj-co-bu').removeClass('d-none');
+            })
+        },
+        sbvsutgmp: function(){
+            jQuery('#sbvsutgmp').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#sb-vs-utg-mp').removeClass('d-none');
+            })
+        },
+        bbvsutgmp: function(){
+            jQuery('#bbvsutgmp').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#bb-vs-utg-mp').removeClass('d-none');
+            })
+        },
+        bbvssbbuhj: function(){
+            jQuery('#bbvssbbuhj').click(function () {
+                jQuery('.cc').addClass('d-none');
+                jQuery('#bb-vs-sb-bu-hj').removeClass('d-none');
             })
         },
     };
